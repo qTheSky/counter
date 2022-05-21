@@ -4,8 +4,8 @@ import {Counter} from './components/UI/Counter';
 
 export function App() {
 
-		const maxValue = 7
-		const startValue = -1
+		const maxValue = 5
+		const startValue = 0
 
 		const [counter, setCounter] = useState<number>(startValue)
 
