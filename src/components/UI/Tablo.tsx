@@ -2,14 +2,20 @@ import React from 'react';
 
 type props = {
 		counter: number
-		disableInc: boolean
+		error: string
+		maxValue: number
 }
 
 
-const Tablo: React.FC<props> = ({counter,disableInc}) => {
-		const tabloClasses = disableInc ? 'tablo-red tablo' : 'tablo'
+const Tablo: React.FC<props> = ({counter, error, maxValue}) => {
+		const counterClassName = counter === maxValue ? 'red-color fontsize80' : 'fontsize80'
+		const errorsClassName = error === 'incorrect value' ? 'red-color tablo-errors' : 'tablo-errors'
 		return (
-				<div className={tabloClasses}>{counter}</div>
+				<div className={'tablo'}>
+						{error === 'work'
+								? <span className={counterClassName}>{counter}</span>
+								: <span className={errorsClassName}>{error}</span>}
+				</div>
 		);
 };
 

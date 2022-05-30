@@ -10,8 +10,6 @@ type props = {
 
 export const Buttons: React.FC<props> = ({addIncCallBack, resetCallBack, disableInc, disableReset}) => {
 
-
-
 		return (
 				<div className="buttons">
 						<Button className={'btn'} disabled={disableInc} name={'inc'} callBack={addIncCallBack}/>

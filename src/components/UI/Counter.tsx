@@ -8,12 +8,17 @@ type props = {
 		resetCallBack: () => void
 		disableInc: boolean
 		disableReset: boolean
+		error: string
+		maxValue: number
 }
 
-export const Counter: React.FC<props> = ({counter, addIncCallBack, resetCallBack, disableInc, disableReset}) => {
+export const Counter: React.FC<props> = ({counter, addIncCallBack, resetCallBack, disableInc, disableReset, error,maxValue}) => {
 		return (
 				<div className="counter">
-						<Tablo counter={counter} disableInc={disableInc}/>
+						<Tablo error={error}
+						       counter={counter}
+						       maxValue={maxValue}
+						/>
 						<Buttons addIncCallBack={addIncCallBack}
 						         resetCallBack={resetCallBack}
 						         disableInc={disableInc}
