@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/qTheSky/counter/static/css/main.a29272e8.css",
+    "main.js": "/qTheSky/counter/static/js/main.ac2e422b.js",
+    "static/js/787.28cb0dcd.chunk.js": "/qTheSky/counter/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/qTheSky/counter/index.html",
+    "main.a29272e8.css.map": "/qTheSky/counter/static/css/main.a29272e8.css.map",
+    "main.ac2e422b.js.map": "/qTheSky/counter/static/js/main.ac2e422b.js.map",
+    "787.28cb0dcd.chunk.js.map": "/qTheSky/counter/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a29272e8.css",
+    "static/js/main.ac2e422b.js"
+  ]
+}
