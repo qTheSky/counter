@@ -25,13 +25,11 @@ export const Settings = (props: PropsType) => {
 				const maxValueAsNumber = JSON.parse(e.currentTarget.value)
 				checkValues(startValue, maxValueAsNumber)
 				setMaxValue(maxValueAsNumber)
-				console.log(props.error)
 		}
 		const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
 				const startValueAsNumber = JSON.parse(e.currentTarget.value)
 				checkValues(startValueAsNumber, maxValue)
 				setStartValue(startValueAsNumber)
-				console.log(props.error)
 		}
 		const onSetClickHandler = () => {
 				props.setSettings(startValue, maxValue)
@@ -42,12 +40,12 @@ export const Settings = (props: PropsType) => {
 						<div>
 								<div>max value:</div>
 								<input className={props.error === 'incorrect value' ? 'input-error' : ''} onChange={onChangeMaxValue}
-								       value={maxValue} type="number"/>
+								       value={maxValue.toFixed()} type="number"/>
 						</div>
 						<div>
 								<div>start value:</div>
 								<input className={props.error === 'incorrect value' ? 'input-error' : ''} onChange={onChangeStartValue}
-								       value={startValue} type="number"/>
+								       value={startValue.toFixed()} type="number"/>
 						</div>
 						<div>
 								<Button className={'btn'} name={'set'}
