@@ -13,6 +13,8 @@ export function App() {
 		const [error, setError] = useState<ErrorType>('work')
 
 
+
+
 		const addIncCallBack = () => {
 				setCounter(counter + 1)
 		}

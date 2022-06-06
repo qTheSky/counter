@@ -38,7 +38,7 @@ body {
 		box-shadow: 0px 3px 39px -7px rgba(34, 60, 80, 0.74);
 }
 .counter:hover{
-		box-shadow: -1px 0px 100px 27px rgba(34, 60, 80, 0.74);
+		box-shadow: -1px 0 100px 27px rgba(34, 60, 80, 0.74);
 }
 .tablo {
 		border: 3px solid black;
@@ -54,7 +54,9 @@ body {
 }
 
 .tablo-errors {
-		font-size: 35px;
+		font-size: 30px;
+		display: block;
+		margin-top: 20px;
 }
 
 .buttons {
@@ -64,11 +66,13 @@ body {
 		border-radius: 10px;
 }
 
-.fontsize80 {
-		font-size: 80px;
+.fontsize100 {
+		font-size: 100px;
+		display: block;
 }
 
 .settings {
+		padding: 33px 0px;
 		border-radius: 10px;
 		border: black 3px solid;
 		width: 250px;
@@ -81,11 +85,12 @@ body {
 		box-shadow: -1px 0px 100px 27px rgba(34, 60, 80, 0.74);
 }
 
-.settings input {
+.input-settings {
 		outline: none;
 		height: 20px;
 		border: 3px solid black;
 		border-radius: 8px;
+		width: 33px;
 }
 .input-error{
 		background-color: #fca2bb;

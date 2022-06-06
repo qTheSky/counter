@@ -32,19 +32,19 @@ export const Settings = (props: PropsType) => {
 				setStartValue(startValueAsNumber)
 		}
 		const onSetClickHandler = () => {
-				props.setSettings(startValue, maxValue)
+				props.setSettings(Math.floor(startValue), Math.floor(maxValue))
 		}
 
 		return (
 				<div className="settings">
 						<div>
 								<div>max value:</div>
-								<input className={props.error === 'incorrect value' ? 'input-error' : ''} onChange={onChangeMaxValue}
+								<input className={props.error === 'incorrect value' ? 'input-error input-settings' : 'input-settings'} onChange={onChangeMaxValue}
 								       value={maxValue.toFixed()} type="number"/>
 						</div>
 						<div>
 								<div>start value:</div>
-								<input className={props.error === 'incorrect value' ? 'input-error' : ''} onChange={onChangeStartValue}
+								<input className={props.error === 'incorrect value' ? 'input-error input-settings' : 'input-settings'} onChange={onChangeStartValue}
 								       value={startValue.toFixed()} type="number"/>
 						</div>
 						<div>

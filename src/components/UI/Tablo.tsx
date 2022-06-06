@@ -8,7 +8,7 @@ type props = {
 
 
 const Tablo: React.FC<props> = ({counter, error, maxValue}) => {
-		const counterClassName = counter === maxValue ? 'red-color fontsize80' : 'fontsize80'
+		const counterClassName = counter === maxValue ? 'red-color fontsize100' : 'fontsize100'
 		const errorsClassName = error === 'incorrect value' ? 'red-color tablo-errors' : 'tablo-errors'
 		return (
 				<div className={'tablo'}>
