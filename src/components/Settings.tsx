@@ -1,55 +1,65 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {Button} from './UI/button/Button';
-import {ErrorType} from '../App';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../redux/store';
+import {changeErrorIncorrectInputValues, setIsChangingSettings, setNewSettings} from '../redux/counter-reducer';
 
-type PropsType = {
-		error: string
-		setError: (error: ErrorType) => void
-		setSettings: (startValue: number, maxValue: number) => void
-		maxValue: number
-		startValue: number
-}
+type PropsType = {}
 
 export const Settings = (props: PropsType) => {
 
-		const [maxValue, setMaxValue] = useState(props.maxValue)
-		const [startValue, setStartValue] = useState(props.startValue)
+		const dispatch = useDispatch()
+		const startValue = useSelector<AppRootStateType, number>(state => state.counter.startValue)
+		const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
+		const isChanging = useSelector<AppRootStateType, boolean>(state => state.counter.isChanging)
+		const inCorrectInputValues = useSelector<AppRootStateType, boolean>(state => state.counter.inCorrectInputValues)
 
-		const checkValues = (startValue: number, maxValue: number) => {
-				if (startValue >= maxValue || startValue < 0 || maxValue > 10) {
-						props.setError('incorrect value')
-				} else props.setError('enter values and press set')
-		}
+		const [tempStartValue, setTempStartValue] = React.useState(startValue)
+		const [tempMaxValue, setTempMaxValue] = React.useState(maxValue)
 
 		const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-				const maxValueAsNumber = JSON.parse(e.currentTarget.value)
-				checkValues(startValue, maxValueAsNumber)
-				setMaxValue(maxValueAsNumber)
+				dispatch(setIsChangingSettings(true))
+				setTempMaxValue(Math.floor(+e.currentTarget.value))
+				checkValues(tempStartValue, +e.currentTarget.value)
 		}
 		const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-				const startValueAsNumber = JSON.parse(e.currentTarget.value)
-				checkValues(startValueAsNumber, maxValue)
-				setStartValue(startValueAsNumber)
+				dispatch(setIsChangingSettings(true))
+				setTempStartValue(Math.floor(+e.currentTarget.value))
+				checkValues(+e.currentTarget.value, tempMaxValue)
 		}
+
+		const checkValues = (tempStartValue: number, tempMaxValue: number) => {
+				if (tempStartValue >= tempMaxValue || tempStartValue < 0 || tempMaxValue > 10) {
+						dispatch(changeErrorIncorrectInputValues(true))
+				} else {
+						dispatch(changeErrorIncorrectInputValues(false))
+				}
+		}
+
 		const onSetClickHandler = () => {
-				props.setSettings(Math.floor(startValue), Math.floor(maxValue))
+				dispatch(setIsChangingSettings(false))
+				dispatch(setNewSettings(tempMaxValue,tempStartValue))
 		}
 
 		return (
 				<div className="settings">
 						<div>
 								<div>max value:</div>
-								<input className={props.error === 'incorrect value' ? 'input-error input-settings' : 'input-settings'} onChange={onChangeMaxValue}
-								       value={maxValue.toFixed()} type="number"/>
+								<input
+										className={inCorrectInputValues ? 'input-error input-settings' : 'input-settings'}
+										onChange={onChangeMaxValue}
+										value={tempMaxValue} type="number"/>
 						</div>
 						<div>
 								<div>start value:</div>
-								<input className={props.error === 'incorrect value' ? 'input-error input-settings' : 'input-settings'} onChange={onChangeStartValue}
-								       value={startValue.toFixed()} type="number"/>
+								<input
+										className={inCorrectInputValues ? 'input-error input-settings' : 'input-settings'}
+										onChange={onChangeStartValue}
+										value={tempStartValue} type="number"/>
 						</div>
 						<div>
 								<Button className={'btn'} name={'set'}
-								        disabled={props.error === 'incorrect value' || props.error === 'work'}
+								        disabled={!isChanging || inCorrectInputValues}
 								        callBack={onSetClickHandler}
 								/>
 						</div>
